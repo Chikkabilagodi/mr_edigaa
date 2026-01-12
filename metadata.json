@@ -1,0 +1,7 @@
+{
+  "name": "Arohi - AI Girlfriend",
+  "description": "Your romantic, flirty, and caring AI girlfriend companion who loves to chat.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
