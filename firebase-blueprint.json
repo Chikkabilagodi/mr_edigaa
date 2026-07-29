@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "ChatSession": {
+      "title": "Chat Session",
+      "description": "Chat thread session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "title"]
+    },
+    "Message": {
+      "title": "Chat Message",
+      "description": "Message in a chat session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "sender": { "type": "string", "enum": ["user", "arohi"] },
+        "text": { "type": "string", "maxLength": 10000 },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "imageUrl": { "type": "string" },
+        "audioUrl": { "type": "string" },
+        "reaction": { "type": "string" }
+      },
+      "required": ["id", "sessionId", "sender", "text"]
+    },
+    "UserSettings": {
+      "title": "User Preferences & Settings",
+      "description": "App preferences, memories, and passcode",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "flirtLevel": { "type": "number" },
+        "personaMode": { "type": "string", "enum": ["romantic", "professional"] },
+        "memories": { "type": "array" },
+        "passcode": { "type": "string" }
+      },
+      "required": ["userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile collection"
+    },
+    "/users/{userId}/settings/config": {
+      "schema": { "$ref": "#/entities/UserSettings" },
+      "description": "User custom settings and memories"
+    },
+    "/users/{userId}/sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/ChatSession" },
+      "description": "User chat sessions"
+    },
+    "/users/{userId}/sessions/{sessionId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Messages belonging to a chat session"
+    }
+  }
+}

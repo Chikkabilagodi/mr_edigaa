@@ -1,7 +1,11 @@
 {
-  "name": "Arohi - AI Girlfriend",
-  "description": "Your romantic, flirty, and caring AI girlfriend companion who loves to chat.",
+  "name": "Arohi - AI Companion",
+  "description": "Shreeyas HT avara preethiya Arohi. Romantic, flirty, and caring AI girlfriend created by mr_edigaa.",
   "requestFramePermissions": [
-    "microphone"
+    "microphone",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
 }
